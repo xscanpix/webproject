@@ -1,13 +1,6 @@
 version: '3'
 
 services:
-  database:
-    container_name: database
-    build: ./database
-    image: mongo
-    ports:
-      - '27017:27017'
-
   backend:
     container_name: backend
     build: ./backend
@@ -15,11 +8,4 @@ services:
       - '3000:3000'
     links:
       - database
-
-  frontend:
-    container_name: frontend
-    build: ./frontend
-    ports:
-      - '5001:80'
-      
-
+    command: ["node", "server.ts"]
